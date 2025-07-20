@@ -27,7 +27,7 @@ const Banner = () => {
                         }}
                         
                     />
-                    <p className='text-3xl'>і будзьце пачутымі!</p>
+                    <p className='text-3xl max-[650]:text-xl'>і будзьце пачутымі!</p>
                 </div>
                 {/* <DownOutlined style={{ fontSize: '36px', position: 'fixed', bottom: 40 }}/> */}
             </div>

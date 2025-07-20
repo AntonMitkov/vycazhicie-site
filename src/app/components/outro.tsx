@@ -23,7 +23,7 @@ const Outro = () => {
                         }}
                         
                     />
-                    <p className='text-xl'>Мерапрыемства, якое яднае</p>
+                    <p className='text-xl max-[550px]:text-sm'>Мерапрыемства, якое яднае</p>
                 </div>
                 {/* <DownOutlined style={{ fontSize: '36px', position: 'fixed', bottom: 40 }}/> */}
             </div>

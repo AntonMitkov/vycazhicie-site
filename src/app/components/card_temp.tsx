@@ -10,7 +10,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ title, imageSrc, description }) =
   return (
     <div className="relative w-70 h-96 rounded-2xl overflow-hidden shadow-lg group cursor-pointer transition-transform duration-300 hover:scale-105" style={{
             WebkitFilter: 'drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5))',
-            filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))',
+            filter: 'drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.5))',
         }}>
       <img
         src={imageSrc}

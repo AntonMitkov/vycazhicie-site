@@ -10,11 +10,15 @@ const SecThree = () => {
         <div className="h-screen bg-newwhite flex flex-col items-center justify-center gap-15 px-5">
             <p className="text-4xl min-[768px]:text-6xl font-black text-newblack">Нашы арганізатары</p>
             <div>
-                <div className="flex flex-row gap-5 max-[1200px]:hidden">
-                    <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
-                    <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
-                    <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
-                    <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
+                <div className="flex flex-row gap-5 max-[1200px]:flex-col">
+                    <div className="flex flex-row gap-5">
+                      <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
+                      <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
+                    </div>
+                    <div className="flex flex-row gap-5">
+                      <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
+                      <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
+                    </div>
                 </div>
             </div>
         </div>

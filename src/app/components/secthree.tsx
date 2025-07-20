@@ -12,9 +12,9 @@ const SecThree = () => {
             <div>
                 <div className="flex flex-row gap-5 max-[1200px]:hidden">
                     <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
-                    <Profile/>
-                    <Profile/>
-                    <Profile/>
+                    <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
+                    <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
+                    <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png"/>
                 </div>
             </div>
         </div>

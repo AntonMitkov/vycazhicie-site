@@ -25,7 +25,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ title, imageSrc, description }) =
 
       {/* Описание при наведении */}
       <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 text-white flex items-center justify-center p-4 text-center transition-opacity duration-300">
-        <p className="text-sm">
+        <p className="text-xs p-8">
             {description}
         </p>
       </div>

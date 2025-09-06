@@ -1,5 +1,6 @@
 import { DownOutlined } from '@ant-design/icons';
 import Image from 'next/image'
+import Logo from "./logo";
 
 const Banner = () => {
 
@@ -17,8 +18,8 @@ const Banner = () => {
             
             <div className='flex items-center flex-col'>
                 <div className='flex items-center flex-col'>
-                    <img 
-                        src='/logo.png'
+                    {/* <img 
+                        src='/logo.svg'
                         alt='Picture'
                         className='md:w-[50vw] w-[70vw] lg:w-[600px]'
                         style={{
@@ -26,8 +27,14 @@ const Banner = () => {
                             filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))',
                         }}
                         
-                    />
-                    <p className='text-3xl max-[650]:text-xl'>і будзьце пачутымі!</p>
+                    /> */}
+                    <Logo 
+                    className='md:w-[50vw] w-[70vw] lg:w-[600px] h-auto p-1' 
+                    style={{
+                            WebkitFilter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))',
+                            filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))',
+                        }}/>
+                    <p className='text-2xl max-[650]:text-xl text-new'>і будзьце пачутымі!</p>
                 </div>
                 {/* <DownOutlined style={{ fontSize: '36px', position: 'fixed', bottom: 40 }}/> */}
             </div>

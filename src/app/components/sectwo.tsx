@@ -10,7 +10,7 @@ const SecTwo = () => {
                     <img src="logo.png" alt="logo" className="w-90"/>
                     <p className="text-4xl max-[700px]:text-2xl text-newwhite font-black">свае думкі і вы!</p>
                 </div>
-                <div className="flex flex-col min-[1050px]:flex-row items-center justify-center gap-15 text-lg max-[700px]:text-sm max-[450px]:text-xs">
+                <div className="flex flex-col min-[1050px]:flex-row items-center justify-center gap-15 text-lg max-[700px]:text-sm max-[450px]:text-xs text-newwhite">
                     <div>
                         <ul>
                             <li>

@@ -1,7 +1,7 @@
 const Footer = () => {
 
   return (
-    <div className='h-30 bg-black flex flex-row items-center justify-evenly text-xs max-[400px]:hidden' style={{
+    <div className='h-30 bg-black flex flex-row items-center justify-evenly text-xs max-[400px]:hidden text-newwhite' style={{
                             WebkitFilter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))',
                             filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))',
                         }}>

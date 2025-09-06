@@ -6,10 +6,14 @@ import SecTwo from "./components/sectwo";
 import SecThree from "./components/secthree";
 import Outro from "./components/outro";
 import Footer from "./components/footer";
+import TornPaper from "./components/tornpaper"
+import TornSvg from "@/assets/torn_paper.svg"
+import LoadingScreen from "./components/LoadingScreen";
 
 export default function Home() {
   return (
     <div className="h-screen">
+      {/* <LoadingScreen/> */}
       <Banner/>
       <Intro/>
       <SecOne/>

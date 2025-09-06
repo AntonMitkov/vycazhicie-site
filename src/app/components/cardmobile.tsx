@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 
 type CardMobileProps = {
   imageSrc: string;
+  imageSrcXs: string;
   title: string;
   description: string;
   isFlipped?: boolean;
@@ -13,6 +14,7 @@ type CardMobileProps = {
 const CardMobile: React.FC<CardMobileProps> = ({
   title,
   imageSrc,
+  imageSrcXs,
   description,
   isFlipped = false,
 }) => {
@@ -86,7 +88,12 @@ const CardMobile: React.FC<CardMobileProps> = ({
         <img
           src={imageSrc}
           alt={title}
-          className="w-35 h-35 max-[600px]:w-20 max-[600px]:h-20 rounded-full object-cover"
+          className="w-35 h-35 max-[600px]:w-20 max-[600px]:hidden block rounded-full object-cover"
+        />
+        <img
+          src={imageSrcXs}
+          alt={title}
+          className="hidden w-20 h-20 max-[600px]:block rounded-full object-cover"
         />
         <div>
           <p className="text-newwhite text-2xl max-[600px]:text-base font-bold">

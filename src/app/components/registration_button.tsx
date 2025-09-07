@@ -22,12 +22,16 @@ const FloatingButton = () => {
     <StyledWrapper>
       <button className="button" aria-label="Floating action" onClick={handleClick}>
         <p className="button__text" aria-hidden>
-          {text.split("").map((letter, index) => (
-            <span key={index} style={{ "--index": index }}>
-              {letter}
+        {text.split("").map((letter, index) => (
+            <span
+            key={index}
+            style={{ "--index": index } as React.CSSProperties & Record<string, any>}
+            >
+            {letter}
             </span>
-          ))}
+        ))}
         </p>
+
         <div className="button__circle">
           <svg
             viewBox="0 0 14 15"

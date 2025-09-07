@@ -37,6 +37,7 @@ const Banner = () => {
                     <p className='text-2xl max-[650]:text-xl text-new'>і будзьце пачутымі!</p>
                 </div>
                 {/* <DownOutlined style={{ fontSize: '36px', position: 'fixed', bottom: 40 }}/> */}
+    
             </div>
         </div>
     </div>

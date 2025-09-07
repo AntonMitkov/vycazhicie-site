@@ -27,8 +27,8 @@ const TornPaper: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
           filterUnits="objectBoundingBox"
           colorInterpolationFilters="sRGB"
         >
-          <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur" />
-          <feOffset in="blur" dx="0" dy="30" result="offsetBlur" />
+          <feGaussianBlur in="SourceAlpha" stdDeviation="20" result="blur" />
+          <feOffset in="blur" dx="0" dy="50" result="offsetBlur" />
           <feMerge>
             <feMergeNode in="offsetBlur" />
             <feMergeNode in="SourceGraphic" />

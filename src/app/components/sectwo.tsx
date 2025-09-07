@@ -56,7 +56,7 @@ const SecTwo = () => {
                         </ul>
                     </div>
                     <div className="border-8 border-double border-newred">
-                        <img src="speakers/sonya_zaya_2.png" alt="sonya" className="w-120" />
+                        <img src="speakers/masha_and_egorchk-2.png" alt="sonya" className="w-120" />
                     </div>
                 </div>
             </div>

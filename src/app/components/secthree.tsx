@@ -12,12 +12,12 @@ const SecThree = () => {
             <div>
                 <div className="flex flex-row gap-5 max-[1200px]:flex-col">
                     <div className="flex flex-row gap-5">
-                      <Profile title="Ягор Вератынскі" imageSrc="orgs/vertik.png" imageXsSrc="orgs/vertik_xs.png"/>
-                      <Profile title="Маша Скнарына" imageSrc="orgs/masha_skn_solnyshko.png" imageXsSrc="orgs/masha_skn_solnyshko.png"/>
+                      <Profile title="Антон Міцькоў" imageSrc="orgs/AntonMeatCow.png" imageXsSrc="orgs/AntonMeatCow.png"/>
+                      <Profile title="Соня Касцюкова" imageSrc="orgs/sonya_zaya_2.png" imageXsSrc="orgs/sonya_zaya_2.png"/>
                     </div>
                     <div className="flex flex-row gap-5">
-                      <Profile title="Таня Паклонская" imageSrc="orgs/tatyana.png" imageXsSrc="orgs/tatyana.png"/>
-                      <Profile title="Антон Міцькоў" imageSrc="orgs/AntonMeatCow.png" imageXsSrc="orgs/AntonMeatCow.png"/>
+                      <Profile title="Тася Туравец" imageSrc="orgs/tasutka.png" imageXsSrc="orgs/tasutka.png"/>
+                      <div className="w-60 p-5 hidden max-[1200px]:block"></div>
                     </div>
                 </div>
             </div>

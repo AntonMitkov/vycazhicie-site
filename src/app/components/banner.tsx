@@ -34,7 +34,7 @@ const Banner = () => {
                             WebkitFilter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))',
                             filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 1))',
                         }}/>
-                    <p className='text-2xl max-[650]:text-xl text-new'>і будзьце пачутымі!</p>
+                    <p className='text-2xl max-[650]:text-xl text-new text-newwhite'>і будзьце пачутымі!</p>
                 </div>
                 {/* <DownOutlined style={{ fontSize: '36px', position: 'fixed', bottom: 40 }}/> */}
     

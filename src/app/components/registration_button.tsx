@@ -37,7 +37,7 @@ const FloatingButton = () => {
             viewBox="0 0 14 15"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="button__icon"
+            className="button__icon button__icon--first"
             width={14}
           >
             <path
@@ -111,9 +111,16 @@ const StyledWrapper = styled.div`
     justify-content: center;
   }
 
+
+  .button__icon--first{
+    opacity: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+
   .button__icon--copy {
     position: absolute;
     transform: translate(-150%, 150%);
+    opacity: 0%;
   }
 
   .button:hover {
@@ -121,14 +128,15 @@ const StyledWrapper = styled.div`
     transform: scale(1.05);
   }
 
-  .button:hover .button__icon:first-child {
-    transition: transform 0.3s ease-in-out;
+  .button:hover .button__icon--first {
     transform: translate(150%, -150%);
+    opacity: 0%
   }
 
   .button:hover .button__icon--copy {
-    transition: transform 0.3s ease-in-out 0.1s;
+    transition: all 0.3s ease-in-out 0.1s;
     transform: translate(0);
+    opacity: 100%;
   }
 
   @keyframes text-rotation {

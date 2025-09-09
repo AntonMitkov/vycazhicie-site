@@ -1,11 +1,13 @@
-"use client"; // if you’re in Next.js
+"use client";
 
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { createPortal } from "react-dom";
+import { useRouter } from "next/navigation";
 
 const FloatingButton = () => {
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
   const text = "РЭГІСТРАЦЫЯ НА ТЭД";
 
   useEffect(() => {
@@ -15,21 +17,21 @@ const FloatingButton = () => {
   if (!mounted) return null;
 
   const handleClick = () => {
-    window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSd77VhyTc-FwIMOkImVMFEEdpgMPioC9CRB4NSUrk8OPkVQjQ/viewform?usp=dialog";
+    router.push("/form"); // переход на страницу form
   };
 
   return createPortal(
     <StyledWrapper>
       <button className="button" aria-label="Floating action" onClick={handleClick}>
         <p className="button__text" aria-hidden>
-        {text.split("").map((letter, index) => (
+          {text.split("").map((letter, index) => (
             <span
-            key={index}
-            style={{ "--index": index } as React.CSSProperties & Record<string, any>}
+              key={index}
+              style={{ "--index": index } as React.CSSProperties & Record<string, any>}
             >
-            {letter}
+              {letter}
             </span>
-        ))}
+          ))}
         </p>
 
         <div className="button__circle">
@@ -111,8 +113,7 @@ const StyledWrapper = styled.div`
     justify-content: center;
   }
 
-
-  .button__icon--first{
+  .button__icon--first {
     opacity: 100%;
     transition: all 0.3s ease-in-out;
   }
@@ -130,7 +131,7 @@ const StyledWrapper = styled.div`
 
   .button:hover .button__icon--first {
     transform: translate(150%, -150%);
-    opacity: 0%
+    opacity: 0%;
   }
 
   .button:hover .button__icon--copy {

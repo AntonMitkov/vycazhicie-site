@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         from: "Website <onboarding@resend.dev>",
-        to: ["mitkovanton1@gmail.com"], // куда отправляем
+        to: ["vycazhicie.event@gmail.com"], // куда отправляем
         subject: `Новая заявка: ${firstName} ${lastName}`,
         html: `
           <h2>Новая регистрация спикера</h2>

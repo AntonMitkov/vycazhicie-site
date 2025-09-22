@@ -42,10 +42,6 @@ export default function FormPage() {
 
       if (res.ok) {
         setSubmitted(true);
-        // ✅ через 2 секунды редирект на главную
-        setTimeout(() => {
-          router.push("/");
-        }, 5000);
       } else {
         console.error("Ошибка при отправке:", await res.text());
       }
@@ -53,7 +49,6 @@ export default function FormPage() {
       console.error("Ошибка сети:", error);
     }
   };
-
 
   return (
     <div className="font-[Montserrat] min-h-screen bg-[#1c1c1c] text-white flex flex-col items-center">
@@ -245,12 +240,32 @@ export default function FormPage() {
             )}
           </>
         ) : (
-          <p className="mt-6 text-newwhite font-medium">
-            Дзякуй, {firstName} {lastName}!  
-            Ваша тэма: «{topic}»  
-            Форма адпраўлена ✅
-            Праз 5 секунд вы перайдзеце на галоўную старонку
-          </p>
+          <div className="space-y-8">
+            <p className="mt-6 text-newwhite font-medium text-lg leading-relaxed">
+              Дзякуй, {firstName} {lastName}!  
+              Ваша тэма: «{topic}»  
+              Форма паспяхова адпраўлена ✅
+            </p>
+
+            {/* Большой текст для заучивания */}
+            <div className="bg-[#1c1c1c] p-6 rounded-xl border border-gray-600 text-left text-base leading-relaxed">
+              <h2 className="text-xl font-bold mb-4">Тэкст для спікера:</h2>
+              <p>
+                «Уважаемые коллеги, сегодняшняя встреча показывает, что совместными усилиями мы можем достичь значительных результатов.  
+                Важно помнить, что каждый шаг вперёд — это результат слаженной работы, настойчивости и стремления к совершенству.  
+                Пусть наши будущие проекты станут ещё более успешными, а идеи воплотятся в жизнь.  
+                Спасибо за внимание и поддержку!»  
+              </p>
+            </div>
+
+            {/* Кнопка возврата */}
+            <button
+              onClick={() => router.push("/")}
+              className="bg-[#991c1f] hover:bg-[#7a1516] transition w-full py-4 rounded-md font-bold text-lg"
+            >
+              ⬅ Вернуться на главную
+            </button>
+          </div>
         )}
       </div>
     </div>

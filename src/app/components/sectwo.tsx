@@ -7,7 +7,7 @@ const SecTwo = () => {
         <div className="pt-30 px-20 max-[1050px]:pb-20">
             <div className="flex flex-col gap-10">
                 <div className="flex flex-row gap-5 items-center max-[820px]:scale-75 max-[820px]:justify-center">
-                    <img src="logo.png" alt="logo" className="w-90"/>
+                    <img src="logo2.svg" alt="logo" className="w-90"/>
                     <p className="text-4xl max-[700px]:text-2xl text-newwhite font-black">свае думкі і вы!</p>
                 </div>
                 <div className="flex flex-col min-[1050px]:flex-row items-center justify-center gap-15 text-lg max-[700px]:text-sm max-[450px]:text-xs text-newwhite">

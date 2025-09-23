@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className="h-screen">
       {/* <LoadingScreen/> */}
-      <FloatingButton/>
+      {/* <FloatingButton/> */}
       <Banner/>
       <Intro/>
       <SecOne/>

@@ -100,7 +100,7 @@ const CardMobile: React.FC<CardMobileProps> = ({
                 onClick={openModal}
                 className="mt-1 text-xs text-newwhite underline"
               >
-                Подробнее
+                Падрабязней
               </button>
             </>
           ) : (

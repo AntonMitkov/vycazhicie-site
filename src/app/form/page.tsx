@@ -63,7 +63,7 @@ export default function FormPage() {
     };
 
     try {
-      const res = await fetch("vycazhicie-email-api.railway.internal/send_email", {
+      const res = await fetch("http://vycazhicie-email-api.railway.internal/send_email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

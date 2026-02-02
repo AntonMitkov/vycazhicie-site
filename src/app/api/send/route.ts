@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         from: "Website <onboarding@resend.dev>",
-        to: ["vycazhicie.event@gmail.com"],
+        to: ["mitkovanton1@gmail.com"],
         subject: `Новая заявка (${topics.length} тем): ${person1.lastName}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px;">

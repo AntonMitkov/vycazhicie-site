@@ -75,7 +75,7 @@ export default function FormPage() {
         setSubmitted(true);
       } else {
         const errorData = await res.json().catch(() => ({}));
-        setErrorMessage(errorData.message || "Памылка пры адпраўцы. Паспрабуйце яшчэ раз, ці адпраўце заяўку на email mitkovanton1@gmail.com");
+        setErrorMessage(errorData.message || "Памылка пры адпраўцы. Паспрабуйце яшчэ раз, ці адпраўце заяўку праз гугл формы https://forms.gle/Q2yRAC4J7pz48RQC9");
       }
     } catch (error) {
       console.error("Ошибка:", error);
@@ -239,7 +239,7 @@ export default function FormPage() {
             <p className="mt-6 text-white font-medium text-lg leading-relaxed">
               Дзякуй, {p1FirstName} {isPair && `і ${p2FirstName}`}!  <br />
             </p>
-            <p>Вы прапанавалі тэм: {topics.length}</p>
+            <p>Вы прапанавалі тэм: {topics.length}. А наступны тэкст вы павінны вывучыць на адбор</p>
             {/* ... Весь ваш текст про дежавю остается без изменений ... */}
             <div className="bg-[#1c1c1c] p-6 rounded-xl border border-gray-600 text-left text-base leading-relaxed">
                 <div className="flex items-center justify-between mb-4">

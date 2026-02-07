@@ -75,7 +75,7 @@ export default function FormPage() {
         setSubmitted(true);
       } else {
         const errorData = await res.json().catch(() => ({}));
-        setErrorMessage(errorData.message || "Памылка пры адпраўцы. Паспрабуйце яшчэ раз.");
+        setErrorMessage(errorData.message || "Памылка пры адпраўцы. Паспрабуйце яшчэ раз, ці адпраўце заяўку на email mitkovanton1@gmail.com");
       }
     } catch (error) {
       console.error("Ошибка:", error);

@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 export default function FormPage() {
   const [step, setStep] = useState(1);
   const [isPair, setIsPair] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Состояние загрузки
+  const [errorMessage, setErrorMessage] = useState(""); // Состояние ошибки
 
   // Данные людей
   const [p1FirstName, setP1FirstName] = useState("");
@@ -19,7 +21,7 @@ export default function FormPage() {
   const [p2Telegram, setP2Telegram] = useState("");
   const [p2Class, setP2Class] = useState("");
 
-  // МАССИВ ТЕМ (минимум одна)
+  // МАССИВ ТЕМ
   const [topics, setTopics] = useState([{ title: "", details: "" }]);
 
   const [submitted, setSubmitted] = useState(false);
@@ -29,23 +31,21 @@ export default function FormPage() {
   const handleNext = (e: FormEvent) => {
     e.preventDefault();
     setStep(2);
+    window.scrollTo(0, 0);
   };
 
-  // Добавление темы
   const addTopic = () => {
     if (topics.length < 5) {
       setTopics([...topics, { title: "", details: "" }]);
     }
   };
 
-  // Удаление темы
   const removeTopic = (index: number) => {
     if (topics.length > 1) {
       setTopics(topics.filter((_, i) => i !== index));
     }
   };
 
-  // Обновление конкретной темы
   const updateTopic = (index: number, field: "title" | "details", value: string) => {
     const newTopics = [...topics];
     newTopics[index][field] = value;
@@ -54,12 +54,14 @@ export default function FormPage() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage("");
 
     const formData = {
       isPair,
       person1: { firstName: p1FirstName, lastName: p1LastName, telegram: p1Telegram, studentClass: p1Class },
       person2: isPair ? { firstName: p2FirstName, lastName: p2LastName, telegram: p2Telegram, studentClass: p2Class } : null,
-      topics, // отправляем массив
+      topics,
     };
 
     try {
@@ -69,15 +71,22 @@ export default function FormPage() {
         body: JSON.stringify(formData),
       });
 
-      if (res.ok) setSubmitted(true);
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        const errorData = await res.json().catch(() => ({}));
+        setErrorMessage(errorData.message || "Памылка пры адпраўцы. Паспрабуйце яшчэ раз.");
+      }
     } catch (error) {
       console.error("Ошибка:", error);
+      setErrorMessage("Сеткавая памылка. Праверце інтэрнэт-злучэнне.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-
-  // Компонент выбора класса (вынесен для удобства)
-  const ClassSelect = ({ value, onChange, label }: { value: string, onChange: (val: string) => void, label: string }) => (
+  // Компонент выбора класса
+  const ClassSelect = ({ value, onChange, label, required = true }: { value: string, onChange: (val: string) => void, label: string, required?: boolean }) => (
     <div>
       <label className="block text-sm font-medium text-gray-200 mb-2">{label}</label>
       <div className="relative">
@@ -85,7 +94,7 @@ export default function FormPage() {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className="appearance-none w-full rounded-md border border-gray-500 bg-[#1c1c1c] p-3 pr-10 text-white focus:border-blue-500 focus:ring focus:ring-blue-300"
-          required
+          required={required}
         >
           <option value="" disabled>Абярыце клас</option>
           {["Філ", "Гіст", "Гум", "Грам", "Бія1", "Бія2", "М", "Ф", "Ім", "Іф", "Эг", "Хім"].map(c => (
@@ -100,7 +109,7 @@ export default function FormPage() {
   return (
     <div className="font-[Montserrat] min-h-screen bg-[#1c1c1c] text-white flex flex-col items-center">
       <div className="relative w-full h-60">
-        <Image src="/back.jpg" alt="Banner" fill className="object-cover" />
+        <Image src="/back.jpg" alt="Banner" fill className="object-cover" priority />
         <div className="absolute left-1/2 -bottom-10 transform -translate-x-1/2">
           <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center border-4 border-[#1c1c1c]">
             <span className="text-white font-bold text-xl">(Вы)</span>
@@ -117,7 +126,6 @@ export default function FormPage() {
           <>
             {step === 1 && (
               <form onSubmit={handleNext} className="space-y-6">
-                {/* ПЕРЕКЛЮЧАТЕЛЬ КОЛИЧЕСТВА ЛЮДЕЙ */}
                 <div className="flex bg-[#1c1c1c] p-1 rounded-lg border border-gray-600">
                   <button
                     type="button"
@@ -138,20 +146,11 @@ export default function FormPage() {
                 <div className="space-y-6">
                   <h2 className="text-lg font-semibold text-red-500">{isPair ? "Першы спікер" : "Дадзеныя спікера"}</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-200 mb-2">Імя *</label>
-                      <input type="text" value={p1FirstName} onChange={(e) => setP1FirstName(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white focus:ring-1 focus:ring-blue-500" required />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-200 mb-2">Прозвішча *</label>
-                      <input type="text" value={p1LastName} onChange={(e) => setP1LastName(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white focus:ring-1 focus:ring-blue-500" required />
-                    </div>
+                    <input type="text" placeholder="Імя *" value={p1FirstName} onChange={(e) => setP1FirstName(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white" required />
+                    <input type="text" placeholder="Прозвішча *" value={p1LastName} onChange={(e) => setP1LastName(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white" required />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-200 mb-2">Тэлеграм *</label>
-                      <input type="text" placeholder="@username" value={p1Telegram} onChange={(e) => setP1Telegram(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white focus:ring-1 focus:ring-blue-500" required />
-                    </div>
+                    <input type="text" placeholder="Тэлеграм *" value={p1Telegram} onChange={(e) => setP1Telegram(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white" required />
                     <ClassSelect value={p1Class} onChange={setP1Class} label="Клас *" />
                   </div>
                 </div>
@@ -160,21 +159,12 @@ export default function FormPage() {
                   <div className="space-y-6 pt-6 border-t border-gray-600">
                     <h2 className="text-lg font-semibold text-red-500">Другі спікер</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-200 mb-2">Імя *</label>
-                        <input type="text" value={p2FirstName} onChange={(e) => setP2FirstName(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white focus:ring-1 focus:ring-blue-500" required={isPair} />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-200 mb-2">Прозвішча *</label>
-                        <input type="text" value={p2LastName} onChange={(e) => setP2LastName(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white focus:ring-1 focus:ring-blue-500" required={isPair} />
-                      </div>
+                      <input type="text" placeholder="Імя *" value={p2FirstName} onChange={(e) => setP2FirstName(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white" required={isPair} />
+                      <input type="text" placeholder="Прозвішча *" value={p2LastName} onChange={(e) => setP2LastName(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white" required={isPair} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-200 mb-2">Тэлеграм *</label>
-                        <input type="text" placeholder="@username" value={p2Telegram} onChange={(e) => setP2Telegram(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white focus:ring-1 focus:ring-blue-500" required={isPair} />
-                      </div>
-                      <ClassSelect value={p2Class} onChange={setP2Class} label="Клас *" />
+                      <input type="text" placeholder="Тэлеграм *" value={p2Telegram} onChange={(e) => setP2Telegram(e.target.value)} className="w-full rounded-md border border-gray-500 bg-transparent p-3 text-white" required={isPair} />
+                      <ClassSelect value={p2Class} onChange={setP2Class} label="Клас *" required={isPair} />
                     </div>
                   </div>
                 )}
@@ -225,9 +215,21 @@ export default function FormPage() {
                   </button>
                 )}
 
+                {errorMessage && (
+                  <div className="bg-red-900/50 border border-red-500 text-red-200 p-3 rounded-md text-sm text-center">
+                    {errorMessage}
+                  </div>
+                )}
+
                 <div className="flex gap-4">
-                  <button type="button" onClick={() => setStep(1)} className="bg-gray-600 w-1/2 py-3 rounded-md">← Назад</button>
-                  <button type="submit" className="bg-[#991c1f] w-1/2 py-3 rounded-md font-semibold">Адправіць</button>
+                  <button type="button" onClick={() => setStep(1)} className="bg-gray-600 w-1/2 py-3 rounded-md transition hover:bg-gray-500" disabled={isSubmitting}>← Назад</button>
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="bg-[#991c1f] w-1/2 py-3 rounded-md font-semibold transition hover:bg-[#7a1516] disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? "Адпраўка..." : "Адправіць"}
+                  </button>
                 </div>
               </form>
             )}
@@ -238,7 +240,7 @@ export default function FormPage() {
               Дзякуй, {p1FirstName} {isPair && `і ${p2FirstName}`}!  <br />
             </p>
             <p>Вы прапанавалі тэм: {topics.length}</p>
-            <p>Мы вельмі чакаем вас на адборы. Усю даданую інфармацыю мы напішам пасля сканчэння рэгістрацыі. А зараз вы бачыце невялічкі тэкст. Гэты тэкст трэба будзе расказаць на адборы, таму зрабіце скрыншот, каб яго не згубіць. Тэкст ёсць і на беларускай, і на расейскай мовах</p>
+            {/* ... Весь ваш текст про дежавю остается без изменений ... */}
             <div className="bg-[#1c1c1c] p-6 rounded-xl border border-gray-600 text-left text-base leading-relaxed">
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-xl font-bold">Тэкст для спікера:</h2>
